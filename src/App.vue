@@ -7,20 +7,24 @@
 <div v-else-if="1 == 3">
   공부하는 거 너무 재밌다ㅎㅎ
 </div>  
-<div v-else>
+<!-- <div v-else>
   구라임ㅋ집가고싶다
-</div>
+</div> -->
 
 <div class="menu">
   <a v-for="(a,i) in 메뉴들" :key="i">{{ a }}</a>
 </div>
 
+<Discount/>
+
 <!-- 모달창 만들기 --> 
 <div class="black-bg" v-if="모달창열렸니 == true">
 
   <div class="white-bg">
+  <img :src="원룸들[누른거].image" style="width:100%">
   <h4>{{ 원룸들[누른거].title }}</h4>
-  <p>상세페이지 내용임</p>
+  <p>{{ 원룸들[누른거]. price}}</p>
+  <p>{{ 원룸들[누른거]. content}}</p>
   <button @click="모달창열렸니 = false">닫기</button>
   </div>
 
@@ -74,6 +78,7 @@
 <script>
 
 import data from './assets/oneroom.js';
+import Discount from './Discount.vue';
 
 
 export default {
@@ -98,7 +103,8 @@ export default {
     }
   },
   components: {
-   
+    Discount : Discount,
+  
   }
 }
 </script>
@@ -146,5 +152,12 @@ div {
   width: 100%; background:white;
   border-radius: 8px;
   padding: 20px;
+}
+
+.discount{
+  background: #eee;
+  padding: 10px;
+  margin:10px;
+  border-radius: 5px;
 }
 </style>
