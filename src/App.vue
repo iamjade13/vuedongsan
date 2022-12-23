@@ -1,5 +1,9 @@
 <template>
 
+<!-- 데이터 전송 step1 -->
+<Modal :원룸들="원룸들" v-bind누른거 ="누른거" :모달창열렸니="모달창열렸니" />
+<!--  v-bind == : -->
+
 <!-- Vue if-else 쓰는 법 -->
 <div v-if="1 == 2">
   안녕하세요
@@ -15,7 +19,8 @@
   <a v-for="(a,i) in 메뉴들" :key="i">{{ a }}</a>
 </div>
 
-<Discount/>
+<Discount :데이터이름="안녕하세요"/>
+
 
 <!-- 모달창 만들기 --> 
 <div class="black-bg" v-if="모달창열렸니 == true">
@@ -25,6 +30,7 @@
   <h4>{{ 원룸들[누른거].title }}</h4>
   <p>{{ 원룸들[누른거]. price}}</p>
   <p>{{ 원룸들[누른거]. content}}</p>
+  <Discount/>
   <button @click="모달창열렸니 = false">닫기</button>
   </div>
 
@@ -38,11 +44,13 @@
 </div>        
 -->
 
+<Card/>
+
 <div v-for="(a,i) in 원룸들" :key="i">
 
   <img :src="a.image" class="room-img">
   <!-- <img :src="원룸들[i].image" class="room-img"> -->
-  <h4 @click="모달창열렸니 = true; 누른거 = i">{{ a.title }}</h4>
+  <!-- <h4 @click="모달창열렸니 = true; 누른거 = i">{{ a.title }}</h4> --> 
   <p>{{ a.price }}원</p>
 
 </div>
@@ -79,6 +87,7 @@
 
 import data from './assets/oneroom.js';
 import Discount from './Discount.vue';
+import Modal from './Modal.vue';
 
 
 export default {
@@ -104,6 +113,7 @@ export default {
   },
   components: {
     Discount : Discount,
+    Modal : Modal
   
   }
 }
